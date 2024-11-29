@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="Fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page d'Authentification</title>
+</head>
+<link rel="stylesheet" href="Authentification.css">
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+<body>
+  
+    <div class="wrapper">
+        <form action="" id="authentication">
+            <h1>Authentification</h1>
+            <div class="input-box">
+                <input type="text" placeholder="Nom Utlisateur" id="nomuser" required>
+                <i class='bx bxs-user'></i>
+            </div>
+
+            <div class="input-box">
+                <input type="password" placeholder="Mot de passe" id="password" required>
+                <i1 class='bx bxs-lock-alt'></i1>
+            </div>
+
+            <div class="remember-forgot">
+                <label><input type="checkbox" onclick="alert('Voulez-vous enregistrer votre mot de passe')">Enregistrer votre Mot de Passe</label>
+            <a href="#">Mot de passe oublie?</a>
+            </div>
+
+            <a href="#"><button type="submit"class="btn" >Connexion</button></a> 
+
+            <div class="register-link">
+            <p>Vous n'avez pas de compte?<a href="Enregistrement.html">Inscrivez-vous</a></p>
+            </div>
+            <p id="sms"></p>
+        </form>
+    </div>
+        <script>
+            document.getElementById("authentication").addEventListener("submit", function(event) {
+                event.preventDefault(); 
+            const nomuser = document.getElementById('nomuser').value;
+            const password = document.getElementById('password').value;
+            const messageElement = document.getElementById('sms');
+
+            if(nomuser==" " && password==" "){
+                messageElement.textContent="Veuillez remplir les champs pour vous connecter";
+                messageElement.style.color ="red";
+                return; 
+            }
+                window.location.href="PagePrincipale.html";
+            });
+       </script>
+    
+
+</body>
+</html>

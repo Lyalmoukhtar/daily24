@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="Fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page d'Inscription</title>
+    
+</head>
+<link rel="stylesheet" href="Enregistrement.css">
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+<body>
+  
+    <div class="wrapper">
+        <form id="registrationForm">
+            <h1>Inscription</h1>
+            <div class="input-box">
+            <input type="text" placeholder="Prenom" id="prenom" required>
+            </div>
+
+            <div class="input-box">
+                <input type="text" placeholder="Nom" id="nom" required>
+            </div>
+
+            <div class="input-box">
+                <input type="text" placeholder="Adresse" required>
+            </div>
+
+            <div class="input-box">
+            <input type="datetime" placeholder="Date de Naissance" id="datenaiss" required>
+            <i3 class='bx bxs-calendar'></i3>
+            </div>
+
+            <div class="input-box">
+              <input type="tel" placeholder="Telephone" id="tel" required>
+              <i4 class='bx bxs-phone'></i4>
+              </div>
+
+            <div class="input-box">
+                <input type="text" placeholder="Lieu de Naissance" required>
+            </div>
+            <div class="input-box">
+                <input type="text" placeholder="Nom Utlisateur" required>
+                <i class='bx bxs-user'></i>
+            </div>
+
+            <div class="input-box">
+                <input type="password" placeholder="Mot de passe" id="password" required>
+                <i1 class='bx bxs-lock-alt'></i1>         
+            </div>
+
+            <div class="input-box">
+              <input type="password" placeholder="Confirmer mot de passe" id="password1" required>
+                     
+          </div>
+
+                       <a href="#"><button type="submit" class="btn" >Inscription</button></a>       
+        </form>
+        <p id="message"></p>
+        <p1 id="message1"></p1>
+        <p2 id="message2"></p2>
+    </div>
+
+    <script>
+              
+              document.getElementById("registrationForm").addEventListener("submit", function(event) {
+                event.preventDefault(); // Empêche l'envoi du formulaire pour la validation
+        const tel = document.getElementById('tel').value;       
+        const password = document.getElementById("password").value;
+        const password1 = document.getElementById("password1").value;
+        const messageElement = document.getElementById("message");
+        const messageElement1 = document.getElementById("message1");
+        const messageElement2 = document.getElementById("message2");
+        const nom = document.getElementById("nom").value;
+        const prenom = document.getElementById("prenom").value;
+        // Vérification des critères
+        const hasUpperCase = /[A-Z]/.test(password); // Au moins une majuscule
+        const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password); // Caractères spéciaux
+        const hasNumber = /\d/.test(password); // Au moins un chiffre
+        const isLongEnough = password.length >= 8; // Longueur minimale de 8 caractères
+
+        // Vérification si tous les critères sont remplis
+        if (hasUpperCase && hasSpecialChar && hasNumber && isLongEnough) {
+          messageElement.textContent = "Mot de passe valide.";
+          messageElement.style.color = "green"; // Affiche le message en vert
+        } else {
+          messageElement.textContent = "Le mot de passe doit contenir :\n" +
+            "- Une majuscule\n" +
+            "- Un caractère spécial\n" +
+            "- Un chiffre\n" +
+            "- Au moins 8 caractères";
+          messageElement.style.color = "red"; // Affiche le message en rouge
+          return;
+        }
+      
+          //Verifier si le champ"nom" contient uniquement des lettres
+          var rejexNom=/^[a-zA-Z]+$/;
+           if (!rejexNom.test(nom)) {
+            alert("Le champ nom doit contenir uniquement des lettres");
+            return false;//Empeche la soumission du formulaire.
+           }
+             //Verifier si le champ"prenom" contient uniquement des lettres
+             var rejexPrenom=/^[a-zA-Z]+$/;
+           if (!rejexNom.test(prenom)) {
+            alert("Le champ prenom doit contenir uniquement des lettres");
+            return false;//Empeche la soumission du formulaire.
+           }
+           //Validation tel sous le format  ##-###-##-##
+           const regexTel = /^\d{2}-\d{3}-\d{2}-\d{2}$/;
+            if(!regexTel.test(tel)){
+              messageElement1.textContent="Le téléphone doit être sous le format ##-###-##-##.";
+              messageElement1.style.color="red";
+              return;
+            }
+
+            // Verification si les passwords sont identiques.
+
+            if(password !==password1){
+              messageElement2.textContent="Les mots de passe doivent etre identiques.";
+              messageElement2.style.color="red";
+              return;
+            }
+       
+           window.location.href = "Authentification.html";
+  
+      });
+    
+        </script>
+</body>
+</html>
